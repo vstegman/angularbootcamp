@@ -1,11 +1,16 @@
-angular.module('colorDisplay',['ngRoute'])
-.config(function($routeProvider){
-  $routeProvider
-  .when("/color", {
+angular.module('colorDisplay',['ui.router'])
+.config(function($stateProvider){
+  $stateProvider
+  .state("color", {
+    url: "/color",
     templateUrl: 'app/color-display/color-display.html',
     controller: "ColorController",
     controllerAs: "clr"
   })
+  .state("color.details",{
+    url: '/details',
+    template: "this is the child state!"
+  });
 })
 .controller("ColorController", function(){
   var vm = this;

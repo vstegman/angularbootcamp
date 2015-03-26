@@ -1,11 +1,16 @@
-angular.module('nameDisplay', ['ngRoute'])
-.config(function($routeProvider){
-  $routeProvider
-    .when("/name",{
+angular.module('nameDisplay', ['ui.router'])
+.config(function($stateProvider){
+  $stateProvider
+    .state("name",{
+      url: "/name",
       templateUrl: 'app/name-display/name-display.html',
       controller: "MainController",
       controllerAs: 'mc'
     })
+    .state('name.details',{
+      url: "/details",
+      template: "this is the name details child"
+    });
 })
 .controller("MainController", function(){
     var vm = this;
