@@ -3,7 +3,8 @@ angular.module('demoApp',['ui.router',
                'colorDisplay',
                'watchThis',
               'promises',
-              'resolver'])
+              'resolver',
+              'directives'])
 .config(function($urlRouterProvider){
   $urlRouterProvider
   .otherwise("/name");
