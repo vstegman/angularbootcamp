@@ -1,1 +1,21 @@
-<p>Name Display</p>
+<div ng-controller='MainController as mc'>
+      Family:
+    <input ng-model="mc.name">
+    <p ng-bind="mc.scream()"></p>
+    <hr>
+
+    <div ng-controller='SecondController as sc'>
+      First:
+      <input ng-model="sc.name">
+      <p><span ng-bind="sc.name"></span> <span ng-bind="mc.name"></span></p>
+    </div>
+    <div ng-controller='SecondController as sc'>
+      First:
+      <input ng-model="sc.name">
+      <p><span ng-bind="sc.name"></span> <span ng-bind="mc.name"></span></p>
+    </div>
+  </div>
+  <div ng-controller="RedController as rd">
+    <div ng-bind="rd.color"></div>
+  </div>
+
