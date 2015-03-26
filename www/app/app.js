@@ -1,7 +1,8 @@
 angular.module('demoApp',['ui.router',
                'nameDisplay',
                'colorDisplay',
-               'watchThis'])
+               'watchThis',
+              'promises'])
 .config(function($urlRouterProvider){
   $urlRouterProvider
   .otherwise("/name");
