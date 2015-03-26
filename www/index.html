@@ -5,7 +5,7 @@
   <div ng-controller='MainController as mc'>
       Family:
     <input ng-model="mc.name">
-    <p ng-bind="mc.name"></p>
+    <p ng-bind="mc.scream()"></p>
     <hr>
 
     <div ng-controller='SecondController as sc'>
@@ -19,7 +19,12 @@
       <p><span ng-bind="sc.name"></span> <span ng-bind="mc.name"></span></p>
     </div>
   </div>
+  <div ng-controller="RedController as rd">
+    <div ng-bind="rd.color"></div>
+  </div>
   <script src='lib/angular/angular.js'></script>
+  <script src='lib/angular-route/angular-route.js'></script>
   <script src='app/app.js'></script>
+  <script src='app/red.js'></script>
 </body>
 </html>

@@ -1,8 +1,12 @@
-angular.module('demoApp',[])
+angular.module('demoApp',['Red'])
   .controller("MainController", function(){
-    console.log('MainCtrl created');
-    this.name =  "Smith";
+    var vm = this;
+    vm.scream = function scream(){
+      return vm.name.toUpperCase();
+    }
+    vm.name =  "Smith";
   })
   .controller("SecondController",function(){
-    this.name = "John";
+    var vm = this;
+    vm.name = "John";
   });
