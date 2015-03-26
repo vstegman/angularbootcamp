@@ -1,4 +1,4 @@
-angular.module('demoApp',['Red'])
+angular.module('demoApp',['Red','nameDisplay'])
   .controller("MainController", function(){
     var vm = this;
     vm.scream = function scream(){
