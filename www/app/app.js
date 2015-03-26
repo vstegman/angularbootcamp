@@ -1,8 +1,11 @@
-angular.module('demoApp',['ui.router','nameDisplay','colorDisplay'])
+angular.module('demoApp',['ui.router',
+               'nameDisplay',
+               'colorDisplay',
+               'watchThis'])
 .config(function($urlRouterProvider){
   $urlRouterProvider
   .otherwise("/name");
-};
+});
 //.config(function($routeProvider){
 //  $routeProvider.when("/404",{
 //    templateUrl: "/app/not-found.html",

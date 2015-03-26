@@ -9,7 +9,7 @@ angular.module('colorDisplay',['ui.router'])
   })
   .state("color.details",{
     url: '/details',
-    template: "this is the child state!"
+    template: "this is the child state! <a ui-sref='color'>close</a>"
   });
 })
 .controller("ColorController", function(){
