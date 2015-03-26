@@ -1,0 +1,7 @@
+<div>
+  <select>
+    <option ng-repeat="color in clr.options" ng-bind="color"></option>
+  </select>
+    <select ng-model="selected" ng-options="color for color in clr.options">
+  </select>
+</div>
