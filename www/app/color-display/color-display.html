@@ -1,9 +1,8 @@
 <div>
-  <select>
-    <option ng-repeat="color in clr.options" ng-bind="color"></option>
+  <select ng-model="selected" ng-options="color for color in clr.options">
   </select>
-    <select ng-model="selected" ng-options="color for color in clr.options">
-  </select>
+  <br>
+  <a ui-sref="color.details">Show more</a>
+  <hr>
+  <ui-view></ui-view>
 </div>
-<a ui-sref="color.details">Show more</a>
-<ui-view></ui-view>

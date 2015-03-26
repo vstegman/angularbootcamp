@@ -1,5 +1,11 @@
+
+Massive Bind Test:<input ng-model="counter">
+<ul><li ng-repeat="item in boxes" ng-bind="item.i"></li></ul>
+
+
 First: <input ng-model="name.first">
 Last: <input ng-model="name.last">
 
 <p><span ng-bind="name.first"></span> <span ng-bind="name.last"></span></p>
 <p ng-bind="fullName()"></p>
+<p>Original <span ng-bind="::fullName()"></span></p><!-- :: is the bind once indicator !>

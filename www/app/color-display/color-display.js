@@ -9,11 +9,11 @@ angular.module('colorDisplay',['ui.router'])
   })
   .state("color.details",{
     url: '/details',
-    template: "this is the child state! <a ui-sref='color'>close</a>"
+    templateUrl: 'app/color-display/color-details.html',
   });
 })
 .controller("ColorController", function(){
   var vm = this;
-  vm.selected = "Red";
   vm.options = ["Red", "Blue", "Green"];
+  vm.selected = vm.options[0]; //"Red";
 })
