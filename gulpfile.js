@@ -1,6 +1,17 @@
 var gulp = require('gulp'),
   connect = require('gulp-connect'),
-  karma = require('karma').server;
+  karma = require('karma').server,
+  concat = require('gulp-concat'),
+  uglify = require('gulp-uglify'),
+  annotate = require('gulp-ng-annotate');
+
+gulp.task('js',function(){
+  gulp.src("www/app/**/*.js")
+    .pipe(concat("all.js"))
+    .pipe(annotate())
+    .pipe(uglify())
+    .pipe(gulp.dest('www'));
+});
 
 gulp.task('connect', function() {
   connect.server({
