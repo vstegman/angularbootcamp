@@ -1,5 +1,6 @@
 var gulp = require('gulp'),
-  connect = require('gulp-connect');
+  connect = require('gulp-connect'),
+  karma = require('karma').server;
 
 gulp.task('connect', function() {
   connect.server({
@@ -7,4 +8,11 @@ gulp.task('connect', function() {
   });
 });
 
-gulp.task('default', ['connect']);
+gulp.task('unit-test', function(done){
+  karma.start({
+    configFile: __dirname + '/karma.conf.js',
+    singleRun: true
+  }, done);
+});
+
+gulp.task('default', ['connect', 'unit-test']);

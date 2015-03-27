@@ -22,4 +22,10 @@ angular.module('directives',['ui.router'])
         addressObj: "="
       }
     }
+})
+.directive('vsPanel', function(){
+    return {
+      templateUrl: 'app/directives/panel.html',
+      transclude: true
+    }
 });
