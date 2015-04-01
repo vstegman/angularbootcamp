@@ -1,0 +1,14 @@
+<h2>Nested page</h2>
+<vs-parent>
+    <vs-child title="Hello">
+        <h4>This is my "Hello" pane</h4>
+        <p>Welcome to St. Louis!</p>
+    </vs-child>
+    <vs-child title="World">
+        <h4>This is my "World" pane</h4>
+        <p>
+            Around the world in
+            <a href ng-click="nc.counter = nc.counter + 1" ng-bind="nc.counter"></a> days.
+        </p>
+    </vs-child>
+</vs-parent>

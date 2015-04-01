@@ -1,0 +1,9 @@
+<div class="tabbable">
+    <ul class="nav nav-tabs">
+        <li ng-repeat="c in nc.children" ng-class="{active:c.selected}">
+            <a href="" ng-click="nc.select(c)">{{c.title}}</a>
+        </li>
+        <li ng-bind="nc.counter"></li>
+    </ul>
+    <div class="tab-content" ng-transclude></div>
+</div>

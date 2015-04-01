@@ -4,7 +4,9 @@ angular.module('demoApp',['ui.router',
                'watchThis',
               'promises',
               'resolver',
-              'directives'])
+              'directives',
+              'nested'
+])
 .config(function($urlRouterProvider){
   $urlRouterProvider
   .otherwise("/name");
