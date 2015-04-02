@@ -12,35 +12,24 @@ angular.module('sharing',['ui.router'])
   self.createWidget = function(name, start){
       value = start || 0;
       w = {name: name, value: value};
-      self.addWidget(w);
       return w;
   };
   self.addWidget = function(widget){
       self.widgets.push(widget);
   };
 })
-.controller('firstCtrl', function(widgetService){
+.controller('nameCtrl', function(widgetService){
   var self = this;
-  self.mycount = 1;
-  self.newWidget = {name:'anonymous', value:1};
-  self.widget = widgetService
+  self.widgets = widgetService.widgets
   self.addWidget = function(){
-    widgetService.createWidget(self.newWidget.name, self.newWidget.value);
-    self.newWidget = {name:'anonymous', value:1};
-    self.mycount++;
+    widgetService.addWidget(widgetService.createWidget('new widget'));
   }
-  widgetService.createWidget('first is first', 12);
 })
-.controller('secondCtrl', function(widgetService){
+.controller('valueCtrl', function(widgetService){
   var self = this;
-  self.mycount = 1;
-  self.newWidget = {name:'unnamed', value:2};
-  self.widget = widgetService
+  self.widgets = widgetService.widgets
   self.addWidget = function(){
-    widgetService.createWidget(self.newWidget.name, self.newWidget.value);
-    self.newWidget = {name:'unnamed', value:1};
-    self.mycount++;
+    widgetService.addWidget(widgetService.createWidget('anonymous',10));
   }
-  widgetService.createWidget('second is first', 24);
 })
 
