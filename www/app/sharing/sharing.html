@@ -1,0 +1,13 @@
+<div class="col-md-10 col-md-offset-1">
+  <div class="row">
+    <div ng-controller="firstCtrl as fc" class="col-md-6">
+      <h2 >First: <span ng-bind="fc.widget.value"> </span></h2>
+      <button ng-click="fc.addOne()">Add</button>
+    </div>
+    <div ng-controller="secondCtrl as sc" class="col-md-6">
+      <h2 >Second: <span ng-bind="sc.widget.value"> </span></h2>
+      <button ng-click="sc.addTwo()">Add</button>
+    </div>
+  </div>
+</div>
+

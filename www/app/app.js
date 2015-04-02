@@ -5,7 +5,8 @@ angular.module('demoApp',['ui.router',
               'promises',
               'resolver',
               'directives',
-              'nested'
+              'nested',
+              'sharing'
 ])
 .config(function($urlRouterProvider){
   $urlRouterProvider
