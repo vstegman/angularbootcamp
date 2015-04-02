@@ -5,7 +5,7 @@ angular.module('sharing',['ui.router'])
     templateUrl: 'app/sharing/sharing.html'
   });
 })
-.service('widgetService', function(){
+.service('widgetOldService', function(){
   var self = this;
   self.widgets = [];
   self.value = function() {return self.widgets.length};
@@ -17,6 +17,19 @@ angular.module('sharing',['ui.router'])
   self.addWidget = function(widget){
       self.widgets.push(widget);
   };
+})
+.factory('widgetService', function(){
+  return {
+    widgets: [],
+    value: function() { return this.widgets.length },
+    createWidget: function(name, start){
+      value = start || 0;
+      return {name: name, value: value};
+    },
+    addWidget: function(widget){
+      this.widgets.push(widget);
+    }
+  }
 })
 .controller('nameCtrl', function(widgetService){
   var self = this;
