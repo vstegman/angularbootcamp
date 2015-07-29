@@ -1,0 +1,33 @@
+{
+  "meta": {"count": 6},
+  "state":
+[
+  {
+    "id": 1,
+    "state": "MO"
+  },
+  {
+    "id": 2,
+    "state": "MO"
+  },
+  {
+    "id": 3,
+    "state": "IL"
+  },
+  {
+    "id": 4,
+    "state": "IL"
+  },
+  {
+    "id": 5,
+    "state": "AL"
+  },
+  {
+    "id": 6,
+    "state": "KS"
+  }
+
+
+]
+}
+

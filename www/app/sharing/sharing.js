@@ -6,6 +6,7 @@ angular.module('sharing',['ui.router'])
   });
 })
 .service('widgetOldService', function(){
+  // these two providers achieve the same result for the controllers, just a matter of syntax
   var self = this;
   self.widgets = [];
   self.value = function() {return self.widgets.length};
@@ -19,6 +20,7 @@ angular.module('sharing',['ui.router'])
   };
 })
 .factory('widgetService', function(){
+  // these two providers achieve the same result for the controllers, just a matter of syntax
   return {
     widgets: [],
     value: function() { return this.widgets.length },
@@ -32,6 +34,7 @@ angular.module('sharing',['ui.router'])
   }
 })
 .controller('nameCtrl', function(widgetService){
+  //these two controllers are very similar, but each set up to only alter 1 property of 'widgets'
   var self = this;
   self.widgets = widgetService.widgets
   self.addWidget = function(){

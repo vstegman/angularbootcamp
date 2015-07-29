@@ -1,0 +1,35 @@
+<div class="row text-center">
+    <h3>Testing Merging $http calls</h3>
+</div>
+<div class="row">
+  <div class="col-sm-offset-2 col-sm-4">
+    <h4 class="text-center">Select Traits</h4>
+    <label ng-repeat="trait in vm.traits">
+      <input type="checkbox" ng-model="trait.selected">
+      <span ng-bind='::trait.label'></span>
+    </label>
+  </div>
+  <div class="col-sm-2">
+    <h4 class="text-center">Select ID</h4>
+    <select ng-options="id for id in vm.ids" ng-model="vm.targetId"></select>
+    <button class="btn btn-info" ng-click="vm.addId(vm.targetId)">Add</button>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-offset-2 col-sm-4">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th ng-repeat="s in vm.selectedTraits" ng-bind="s.label"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="r in vm.results">
+          <th ng-bind="r.id"></th>
+          <td ng-repeat="s in vm.selectedTraits" ng-bind="r[s.data]"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

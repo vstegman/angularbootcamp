@@ -1,0 +1,33 @@
+{
+  "meta": {"count": 6},
+  "status":
+[
+  {
+    "id": 1,
+    "status": "Married"
+  },
+  {
+    "id": 2,
+    "status": "Married"
+  },
+  {
+    "id": 3,
+    "status": "Married"
+  },
+  {
+    "id": 4,
+    "status": "Married"
+  },
+  {
+    "id": 5,
+    "status": "Married"
+  },
+  {
+    "id": 6,
+    "status": "Single"
+  }
+
+
+]
+}
+

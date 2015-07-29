@@ -47,7 +47,6 @@ angular.module('promises',['ui.router'])
     d.reject("NAN Error");
   };
   p8 = d.promise;
-  // an ALL promise
 
 
   //handling promises
@@ -68,7 +67,9 @@ angular.module('promises',['ui.router'])
     return number;
   });
 
+  // an ALL promise
   var p3 = $q.all([p1,p2,p4,p5,p6, p9]);
+
   p3.then(function(number){
     console.log('p3: ' + number);
     vm.sum = number.reduce(function(previousValue, currentValue, index, array) {
