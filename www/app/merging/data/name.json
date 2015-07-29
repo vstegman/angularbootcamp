@@ -4,27 +4,33 @@
 [
   {
     "id": 1,
-    "name": "Vince"
+    "name": "Vince",
+    "last": "Barbarino"
   },
   {
     "id": 2,
-    "name": "Caroline"
+    "name": "Caroline",
+    "last": "Barbarino"
   },
   {
     "id": 3,
-    "name": "Charles"
+    "name": "Charles",
+    "last": "Spruce"
   },
   {
     "id": 4,
-    "name": "Gwen"
+    "name": "Gwen",
+    "last": "Spruce"
   },
   {
     "id": 5,
-    "name": "Edward"
+    "name": "Edward",
+    "last": "Munch"
   },
   {
     "id": 6,
-    "name": "Justin"
+    "name": "Justin",
+    "last": "Roberts"
   }
 
 

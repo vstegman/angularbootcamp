@@ -2,9 +2,9 @@
     <h3>Testing Merging $http calls</h3>
 </div>
 <div class="row">
-  <div class="col-sm-offset-2 col-sm-4">
+  <div class="col-sm-offset-2 col-sm-6">
     <h4 class="text-center">Select Traits</h4>
-    <label ng-repeat="trait in vm.traits">
+    <label ng-repeat="trait in vm.traits" style="margin-right: 10px;">
       <input type="checkbox" ng-model="trait.selected">
       <span ng-bind='::trait.label'></span>
     </label>
@@ -15,8 +15,8 @@
     <button class="btn btn-info" ng-click="vm.addId(vm.targetId)">Add</button>
   </div>
 </div>
-<div class="row">
-  <div class="col-sm-offset-2 col-sm-4">
+<div class="row" ng-show="vm.results.length > 0" style="margin-top: 20px;">
+  <div class="col-sm-offset-2 col-sm-8">
     <table class="table">
       <thead>
         <tr>
