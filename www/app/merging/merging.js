@@ -9,10 +9,6 @@ angular.module('merging',['ui.router'])
 
   $provide.factory('vsInterceptor', function($q){
     return {
-//      'response': function(response){
-//        console.log('response intercepted');
-//        return response;
-//      },
       'responseError': function(response){
         if(response.status == 302){
           console.log('redirect to login');
@@ -29,23 +25,31 @@ angular.module('merging',['ui.router'])
 .controller('MergingController', function(traitService, traitCache){
   var self = this;
 
-  self.ids = [1,2,3,4,5,6];
+  self.ids = [{value:1, selected:true},{value:2, selected: true},{value:3, selected: false},
+    {value:4, selected: false},{value:5, selected: false},{value: 6, selected: false}];
   self.traits = traitService.traits;
   self.results = [];
   self.selectedTraits = [];
 
+  self.go = function(){
+    self.results = [];
+    selectedIds = self.ids.filter(function(i){ return i.selected == true; }).map(function(i){return i.value;});
+    angular.forEach(selectedIds, function(id){self.addId(id)});
+  };
+  self.clear = function(){
+    angular.forEach(self.ids, function(id){ id.selected = false; });
+    angular.forEach(self.traits, function(t){ t.selected = false; });
+    self.results = [];
+    traitCache.clear();
+  };
   self.addId = function(id){
     if(id != undefined) {
       self.selectedTraits = traitService.selectedTraits(self.traits);
       var display = {id: id};
-      self.results.push(display)
-      traitService.getTraits(self.selectedTraits, id, display)
+      self.results.push(display);
+      traitService.getTraits(self.selectedTraits, id, display);
     }
   }
-
-  self.cache = traitCache;
-
-
 
 })
 .service("traitService", function(api, traitCache, traitConfig){
@@ -55,38 +59,42 @@ angular.module('merging',['ui.router'])
     selectedTraits: function(list){
         return list.filter(function(t){ return t.selected == true });
     },
-
     getTraits: function(selectedTraits, id, container){
-        var hitList = traitConfig.resourceList(selectedTraits);
-        angular.forEach(hitList, function(res){
-          api.get(res,id).then(function(response){
-            angular.forEach(traitConfig.resources[res], function(pt){
-              container[pt] = response[pt];
-            })
-          });
+      cached = this.checkCache(selectedTraits, id);
+      _.assign(container, cached);
+      test = _.keys(_.pick(container, function(v){ return v == null; }));
+      var hitList = traitConfig.resourceList(test);
+      angular.forEach(hitList, function(res){
+        api.get(res,id).then(function(response){
+            _.assign(container, response);
         });
-        traitCache.add(container);
-      }
+      });
+      traitCache.add(container);
+    },
+    checkCache: function(selectedTraits,id) {
+      var c = traitCache.get(id);
+      if(!c){ c = {} };
+      var req = this.nullObject(selectedTraits.map(function(t){return t.data;}));
+      return _.assign(req, c);
+    },
+    nullObject: function(properties){
+      obj = {}
+      angular.forEach(properties, function(p){ obj[p] = null; });
+      return obj;
+    }
+
   }
 })
 .service("traitCache", function(){
 
   this.add = function(item){
-    if(this.cache[item.id]){
-      console.log('updatings');
-      //NOT UPDATING BECAUSE item IS NOT RESOLVED YET
-      // could use merge or assign
-      this.cache[item.id] = _.assign(this.cache[item.id], item);
-    } else{
-      console.log('new');
-      this.cache[item.id] = item;
-    }
+    this.cache[item.id] = item;
   };
   this.cache = [];
   this.get = function(id){
     return this.cache[id];
   }
-  clear = function(){
+  this.clear = function(){
     this.cache = [];
   }
 })
@@ -100,7 +108,6 @@ angular.module('merging',['ui.router'])
               {label: "Residence",data:'state',resource: 'state',selected: true},
               {label: "Married",data:'status',resource: 'status', selected: true}
             ],
-
     resources:  {
                   name: ['name','last'],
                   age: ['age'],
@@ -108,11 +115,22 @@ angular.module('merging',['ui.router'])
                   state: ['state'],
                   status: ['status']
                 },
-
+    findResourceFor: function(trait){
+      return _.findKey(this.resources, function(res){
+        return res.indexOf(trait) > -1;
+      });
+    },
     resourceList: function(traits) {
+      self = this;
       uniq = [];
-      angular.forEach(traits, function(t){ if(uniq.indexOf(t.resource) == -1){uniq.push(t.resource);} });
-      return uniq;
+      angular.forEach(traits, function(t){
+        if(t.hasOwnProperty('resource')) {
+          uniq.push(t.resource);
+        } else {
+          uniq.push(self.findResourceFor(t));
+        }
+      });
+      return _.uniq(uniq);
     }
   }
 

@@ -7,7 +7,8 @@ angular.module('demoApp',['ui.router',
               'directives',
               'nested',
               'sharing',
-              'merging'
+              'merging',
+              'overload'
 ])
 .config(function($urlRouterProvider){
   $urlRouterProvider
