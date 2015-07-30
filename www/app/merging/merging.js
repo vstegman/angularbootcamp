@@ -26,7 +26,7 @@ angular.module('merging',['ui.router'])
 
   $httpProvider.interceptors.push('vsInterceptor');
 })
-.controller('MergingController', function(traitService){
+.controller('MergingController', function(traitService, traitCache){
   var self = this;
 
   self.ids = [1,2,3,4,5,6];
@@ -43,9 +43,12 @@ angular.module('merging',['ui.router'])
     }
   }
 
+  self.cache = traitCache;
+
+
 
 })
-.service("traitService", function(api, traitConfig){
+.service("traitService", function(api, traitCache, traitConfig){
   return {
     traits: traitConfig.traits,
 
@@ -62,14 +65,30 @@ angular.module('merging',['ui.router'])
             })
           });
         });
+        traitCache.add(container);
       }
   }
 })
 .service("traitCache", function(){
-  add = function(item){
-    cache[item.id] = item
+
+  this.add = function(item){
+    if(this.cache[item.id]){
+      console.log('updatings');
+      //NOT UPDATING BECAUSE item IS NOT RESOLVED YET
+      // could use merge or assign
+      this.cache[item.id] = _.assign(this.cache[item.id], item);
+    } else{
+      console.log('new');
+      this.cache[item.id] = item;
+    }
   };
-  cache = [];
+  this.cache = [];
+  this.get = function(id){
+    return this.cache[id];
+  }
+  clear = function(){
+    this.cache = [];
+  }
 })
 .service("traitConfig", function(){
   return {
